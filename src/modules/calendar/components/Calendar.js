@@ -75,15 +75,15 @@ class Calendar extends React.Component {
             key={i}
             disabled={!dateFns.isSameMonth(day, monthStart) ? true : false}
             selected={dateFns.isSameDay(day, selectedDate) ? true : false}
+            date={
+              dateFns.isSameMonth(day, monthStart)
+                ? `${
+                    this.state.currentYear
+                  }-${getCurrentMonth()}-${parseFormattedDate(formattedDate)}`
+                : ''
+            }
             numberOfDay={formattedDate}
-            events={this.props.events.filter(event => {
-              return (
-                event.eventDate ===
-                `${
-                  this.state.currentYear
-                }-${getCurrentMonth()}-${parseFormattedDate(formattedDate)}`
-              );
-            })}
+            events={this.props.events}
             handleOnClick={this.toggle}
           />
         );

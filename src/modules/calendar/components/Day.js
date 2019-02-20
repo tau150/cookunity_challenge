@@ -50,17 +50,28 @@ const StyledDiv = styled.div`
   }
 `;
 
-const Day = ({ numberOfDay, events, handleOnClick, selected, disabled }) => {
-  const eventsList = events.map(event => (
-    <Event
-      eventId={event.eventId}
-      time={event.eventTime}
-      color={event.eventColor}
-      title={event.eventTitle}
-      date={event.eventDate}
-      handleOnClick={handleOnClick}
-    />
-  ));
+const Day = ({
+  numberOfDay,
+  events,
+  handleOnClick,
+  date,
+  selected,
+  disabled
+}) => {
+  const filteresEvents = events.filter(event => event.eventDate === date);
+
+  const eventsList = filteresEvents.map(event => {
+    return (
+      <Event
+        eventId={event.eventId}
+        time={event.eventTime}
+        color={event.eventColor}
+        title={event.eventTitle}
+        date={event.eventDate}
+        handleOnClick={handleOnClick}
+      />
+    );
+  });
   return (
     <StyledDiv
       disabled={disabled}
